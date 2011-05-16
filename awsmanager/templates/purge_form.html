@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Purge URLs
+{% endblock %}
+
+{% block content %}
+    <h1>Purge URLs</h1>
+
+    <p>Select the distribution and paste the PATHs you want to purge bellow:</p>
+
+    <form action="" method="post" accept-charset="utf-8">
+        <p>
+            <label for="distribution">Distribution:</label>
+            <select name="distribution" id="distribution">
+                {% for distribution in distributions %}
+                    <option value="{{ distribution.id }}">{{ distribution.cnames[0] }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label for="paths">Paths (one per line):</label><br />
+            <textarea name="paths" id="paths" rows="8" cols="40"></textarea>
+        </p>
+        <input type="submit" name="purge_button" value="Purge!" id="purge_button"/>
+    </form>
+{% endblock %}
