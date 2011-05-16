@@ -1,6 +1,6 @@
 from awsmanager import app
 from boto.cloudfront import CloudFrontConnection
-from flask import render_template
+from flask import render_template, request
 
 class ConnectionManager(object):
     _connection = None
@@ -18,3 +18,11 @@ def show_purge_form():
     connection = ConnectionManager.get_cloudfront_connection()
     distributions = connection.get_all_distributions()
     return render_template("purge_form.html", distributions=distributions)
+
+@app.route('/purge', methods=['POST'])
+def purge_paths():
+    distribution_id = request.form['distribution']
+    paths = [p.strip() for p in request.form['paths'].split('\n')]
+    connection = ConnectionManager.get_cloudfront_connection()
+    batch = connection.create_invalidation_request(distribution_id, paths)
+    return render_template("invalidation_sent.html", batch=batch)

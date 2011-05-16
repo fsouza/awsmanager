@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Invalidation sent successful
+{% endblock %}
+
+{% block content %}
+    <h1>Invalidation sent</h1>
+
+    <p>The following paths were sent for invalidation:</p>
+
+    <ul>
+        {% for path in batch.paths %}
+            <li>{{ path }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>Check the complete XML:</p>
+
+    <code>{{ batch.to_xml() }}</code>
+
+    <p><a href="{{ url_for('show_purge_form') }}">Purge another URLs</a></p>
+{% endblock %}
