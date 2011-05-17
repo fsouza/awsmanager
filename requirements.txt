@@ -1,6 +1,7 @@
 boto
 flask
 flask-principal
+flask-mongoalchemy
 
 # testing
 specloud
