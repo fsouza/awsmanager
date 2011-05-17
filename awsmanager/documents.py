@@ -20,6 +20,8 @@ class UserQuery(BaseQuery):
         return authenticated, user
 
 class User(db.Document):
+    query_class = UserQuery
+
     username = db.StringField()
     hashed_password = db.StringField()
 
