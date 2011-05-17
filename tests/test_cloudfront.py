@@ -3,7 +3,7 @@ import awsmanager
 import mocker
 from aws_mocks import MockCloudFrontConnection
 
-class TestHome(mocker.MockerTestCase):
+class TestCloudFront(mocker.MockerTestCase):
 
     def setUp(self):
         self.client = awsmanager.app.test_client()
