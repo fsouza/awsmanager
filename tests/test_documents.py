@@ -22,3 +22,8 @@ class TestDocuments(unittest.TestCase):
     def test_should_be_able_to_not_authenticate_an_existing_user_with_wrong_password(self):
         authenticated, user = User.query.authenticate(username='tester', password='wrong123')
         assert_false(authenticated)
+
+    def test_should_be_able_to_not_authenticate_an_unexisting_user(self):
+        authenticated, user = User.query.authenticate(username='unknown', password='wrong123')
+        assert_false(authenticated)
+        assert user is None
