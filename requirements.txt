@@ -3,5 +3,5 @@ flask
 
 # testing
 git+git://github.com/cobrateam/splinter.git
-nose
+specloud
 mocker
