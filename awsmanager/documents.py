@@ -4,11 +4,6 @@ from flaskext.mongoalchemy import BaseQuery
 
 class UserQuery(BaseQuery):
 
-    def from_identity(self, identity):
-        user = self.get(identity.name)
-        identity.user = user
-        return user
-
     def authenticate(self, username, password):
         user = self.filter({ 'username' : username}).first()
 
