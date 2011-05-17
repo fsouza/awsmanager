@@ -21,11 +21,22 @@ class UserQuery(BaseQuery):
 
 class User(db.Document):
     username = db.StringField()
-    password = db.StringField()
+    hashed_password = db.StringField()
 
-    def check_password(self, password):
+    def _encrypt(self, password):
         salt = app.config['PASSWORD_SALT']
         sha1 = hashlib.sha1()
         sha1.update(password)
         sha1.update(salt)
-        return self.password == sha1.hexdigest()
+        return sha1.hexdigest()
+
+    def check_password(self, password):
+        return self.password == self._encrypt(password)
+
+    def get_password(self):
+        return self.hashed_password
+
+    def set_password(self, password):
+        self.hashed_password = self._encrypt(password)
+
+    password = property(fget=get_password, fset=set_password)
