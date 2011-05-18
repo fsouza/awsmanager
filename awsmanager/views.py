@@ -1,7 +1,11 @@
 from awsmanager import app
 from awsmanager.forms import LoginForm
 from awsmanager.util import ConnectionManager
-from flask import render_template, request
+from flask import redirect, render_template, request, url_for
+
+@app.route('/')
+def index():
+    return render_template("index.html")
 
 @app.route('/purge')
 def show_purge_form():
