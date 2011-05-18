@@ -21,3 +21,9 @@ def purge_paths():
 def show_login_form():
     form = LoginForm()
     return render_template("login.html", form=form)
+
+@app.route('/login', methods=['POST'])
+def do_login():
+    form = LoginForm()
+    if not form.validate_on_submit():
+        return render_template("login.html", form=form)
