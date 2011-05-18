@@ -38,8 +38,3 @@ class TestForms(unittest.TestCase):
         with awsmanager.app.test_request_context():
             form = LoginForm(username='admin', password='123456')
             assert_true(form.validate())
-
-    def test_login_form_should_raises_ValidationError_on_login_failure(self):
-        with awsmanager.app.test_request_context():
-            form = LoginForm(username='admin', password='123457')
-            assert_false(form.validate())
