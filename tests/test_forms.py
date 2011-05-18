@@ -22,3 +22,9 @@ class TestForms(unittest.TestCase):
         with awsmanager.app.test_request_context():
             form = LoginForm(username='user', password=None)
             assert_false(form.validate())
+
+    def test_login_form_should_validate_the_length_of_password(self):
+        with awsmanager.app.test_request_context():
+            form = LoginForm(username='user', password='12345')
+            assert_false(form.validate())
+
