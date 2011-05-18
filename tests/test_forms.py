@@ -8,7 +8,6 @@ class TestForms(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        awsmanager.app.config['CSRF_ENABLED'] = False
         cls.user = User()
         cls.user.username = 'admin'
         cls.user.password = '123456'
@@ -16,7 +15,6 @@ class TestForms(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        awsmanager.app.config['CSRF_ENABLED'] = True
         cls.user.remove()
 
     def test_login_form_should_validate_presence_of_username(self):
