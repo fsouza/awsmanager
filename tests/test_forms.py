@@ -1,7 +1,7 @@
 import awsmanager
 import unittest
 from awsmanager.forms import LoginForm
-from nose.tools import assert_false
+from nose.tools import assert_false, assert_true
 
 class TestForms(unittest.TestCase):
 
@@ -28,3 +28,7 @@ class TestForms(unittest.TestCase):
             form = LoginForm(username='user', password='12345')
             assert_false(form.validate())
 
+    def test_login_form_should_accept_valid_username_and_password(self):
+        with awsmanager.app.test_request_context():
+            form = LoginForm(username='user', password='123456')
+            assert_true(form.validate())
