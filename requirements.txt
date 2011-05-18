@@ -4,6 +4,7 @@ flask-principal
 flask-mongoalchemy
 
 # testing
+lxml
 specloud
 mocker
 coverage
