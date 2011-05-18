@@ -1,6 +1,7 @@
 import unittest
 from awsmanager.documents import User
-from nose.tools import assert_true, assert_false
+from flaskext.principal import Identity
+from nose.tools import assert_equals, assert_false, assert_true
 
 class TestDocuments(unittest.TestCase):
 
@@ -27,3 +28,10 @@ class TestDocuments(unittest.TestCase):
         authenticated, user = User.query.authenticate(username='unknown', password='wrong123')
         assert_false(authenticated)
         assert user is None
+
+    def test_should_be_able_to_load_a_user_by_a_given_identity(self):
+        identity = Identity(self.user.mongo_id)
+        user = User.query.from_identity(identity)
+
+        assert_equals(self.user, identity.user)
+        assert_equals(self.user, user)

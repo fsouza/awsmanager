@@ -14,6 +14,11 @@ class UserQuery(BaseQuery):
 
         return authenticated, user
 
+    def from_identity(self, identity):
+        user = self.get(identity.name)
+        identity.user = user
+        return user
+
 class User(db.Document):
     query_class = UserQuery
 
