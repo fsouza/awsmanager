@@ -1,4 +1,5 @@
 from awsmanager import app
+from awsmanager.forms import LoginForm
 from awsmanager.util import ConnectionManager
 from flask import render_template, request
 
@@ -15,3 +16,8 @@ def purge_paths():
     connection = ConnectionManager.get_cloudfront_connection()
     batch = connection.create_invalidation_request(distribution_id, paths)
     return render_template("invalidation_sent.html", batch=batch)
+
+@app.route('/login')
+def show_login_form():
+    form = LoginForm()
+    return render_template("login.html", form=form)
