@@ -36,3 +36,15 @@ class TestLogin(unittest.TestCase):
         assert_equals(200, response.status_code)
 
         assert 'required' in response.data
+
+    def test_should_be_able_to_login_with_right_data(self):
+        data = {
+            'username' : 'admin',
+            'password' : '123456',
+        }
+
+        response = self.client.post('/login', data=data, follow_redirects=True)
+        assert_equals(200, response.status_code)
+
+        dom = html.fromstring(response.data)
+        assert_equals("AWS Manager", dom.xpath("//h1")[0].text)

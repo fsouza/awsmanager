@@ -29,5 +29,7 @@ def show_login_form():
 @app.route('/login', methods=['POST'])
 def do_login():
     form = LoginForm()
-    if not form.validate_on_submit():
-        return render_template("login.html", form=form)
+    if form.validate_on_submit():
+        pass
+        # TODO: login
+    return render_template("login.html", form=form)
