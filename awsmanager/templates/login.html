@@ -12,9 +12,11 @@
     {% from "/macros.html" import render_field %}
 
     <form action="" method="post" accept-charset="utf-8">
-        {{ render_field(form.username) }}
-        {{ render_field(form.password) }}
-        <dt></dt>
-        <dd><input type="submit" value="Login"/></dd>
+        <dl>
+            {{ render_field(form.username) }}
+            {{ render_field(form.password) }}
+            <dt></dt>
+            <dd><input type="submit" value="Login"/></dd>
+        </dl>
     </form>
 {% endblock %}
