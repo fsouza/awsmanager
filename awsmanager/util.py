@@ -1,5 +1,5 @@
-from awsmanager import app
 from boto.cloudfront import CloudFrontConnection
+from flask import current_app as app
 
 class ConnectionManager(object):
     _connection = None

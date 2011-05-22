@@ -1,5 +1,3 @@
-from awsmanager import app
+import awsmanager
 
-def setup():
-    app.config['TESTING'] = True
-    app.config['CSRF_ENABLED'] = False
+app = awsmanager.get_app(settings_module='tests.settings_test')

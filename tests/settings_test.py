@@ -1,0 +1,7 @@
+AWS_ACCESS_KEY_ID = 'bla-bla'
+AWS_SECRET_ACCESS_KEY = '123 secret'
+CSRF_ENABLED = False
+DEBUG = True
+MONGOALCHEMY_DATABASE = 'awsmanager-test'
+PASSWORD_SALT = '--'
+SECRET_KEY = '123-bla'

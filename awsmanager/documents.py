@@ -1,5 +1,6 @@
 import hashlib
-from awsmanager import app, db
+from awsmanager import db
+from flask import current_app as app
 from flaskext.mongoalchemy import BaseQuery
 
 class UserQuery(BaseQuery):

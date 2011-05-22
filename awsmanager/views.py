@@ -1,19 +1,20 @@
-from awsmanager import app
 from awsmanager.forms import LoginForm
 from awsmanager.util import ConnectionManager
-from flask import redirect, render_template, request, url_for
+from flask import Module, render_template, request
 
-@app.route('/')
+frontend = Module(__name__)
+
+@frontend.route('/')
 def index():
     return render_template("index.html")
 
-@app.route('/purge')
+@frontend.route('/purge')
 def show_purge_form():
     connection = ConnectionManager.get_cloudfront_connection()
     distributions = connection.get_all_distributions()
     return render_template("purge_form.html", distributions=distributions)
 
-@app.route('/purge', methods=['POST'])
+@frontend.route('/purge', methods=['POST'])
 def purge_paths():
     distribution_id = request.form['distribution']
     paths = [p.strip() for p in request.form['paths'].split('\n')]
@@ -21,12 +22,12 @@ def purge_paths():
     batch = connection.create_invalidation_request(distribution_id, paths)
     return render_template("invalidation_sent.html", batch=batch)
 
-@app.route('/login')
+@frontend.route('/login')
 def show_login_form():
     form = LoginForm()
     return render_template("login.html", form=form)
 
-@app.route('/login', methods=['POST'])
+@frontend.route('/login', methods=['POST'])
 def do_login():
     form = LoginForm()
     if form.validate_on_submit():

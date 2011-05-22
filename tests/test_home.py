@@ -1,13 +1,13 @@
-import awsmanager
 import unittest
 from lxml import html
 from nose.tools import assert_equals
+from tests import app
 
 class TestHome(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.client = awsmanager.app.test_client()
+        cls.client = app.test_client()
 
     def test_show_contain_the_title_on_index(self):
         response = self.client.get('/')

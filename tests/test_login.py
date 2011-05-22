@@ -1,18 +1,19 @@
-import awsmanager
 import unittest
 from awsmanager.documents import User
 from lxml import html
 from nose.tools import assert_equals
+from tests import app
 
 class TestLogin(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.client = awsmanager.app.test_client()
-        cls.user = User()
-        cls.user.username = 'admin'
-        cls.user.password = '123456'
-        cls.user.save()
+        with app.test_request_context():
+            cls.client = app.test_client()
+            cls.user = User()
+            cls.user.username = 'admin'
+            cls.user.password = '123456'
+            cls.user.save()
 
     @classmethod
     def tearDownClass(cls):

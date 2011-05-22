@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-import awsmanager
 import mocker
 from aws_mocks import MockCloudFrontConnection
+from tests import app
 
 class TestCloudFront(mocker.MockerTestCase):
 
     def setUp(self):
-        self.client = awsmanager.app.test_client()
+        self.client = app.test_client()
 
     def tearDown(self):
         self.mocker.reset()
