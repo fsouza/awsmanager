@@ -1,7 +1,6 @@
 boto
 flask
 flask-principal
-flask-mongoalchemy
 flask-wtf
 
 # testing
